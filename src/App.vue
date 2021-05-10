@@ -1,19 +1,65 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <ProductForm :onAddProduct="handleOnAddProduct" />
+      <ProductList :listdata="products" />
+      <SearchBar :onSearchProduct="handleOnSearchProduct" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ProductForm from "./components/ProductForm";
+import ProductList from "./components/ProductList";
+import SearchBar from "./components/SearchBar";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    ProductForm,
+    ProductList,
+    SearchBar,
+  },
+  data() {
+    return {
+      products: [
+        {
+          name: "iPhone 12",
+          price: "50.000,00",
+          category: "Celulares",
+        },
+        {
+          name: "iPhone 11",
+          price: "39.998,00",
+          category: "Celulares",
+        },
+      ],
+    };
+  },
+
+  props: {
+    onAddProduct: Function,
+    listdata: Array,
+    onSearchProduct: Function,
+  },
+
+  methods: {
+    handleOnAddProduct(product) {
+      console.log(product);
+      this.products = this.products.concat(product);
+    },
+
+    handleOnSearchProduct(text) {
+      const results = this.products.filter((p) => p.name === "text");
+      if (results.length > 0) {
+        this.listedProducts = results;
+      } else {
+        this.listedProducts = this.products;
+      }
+
+      console.log(this.listedProducts);
+    },
+  },
+};
 </script>
 
 <style>
