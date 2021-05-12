@@ -2,8 +2,8 @@
   <div id="app">
     <div>
       <ProductForm :onAddProduct="handleOnAddProduct" />
-      <ProductList :listdata="products" />
       <SearchBar :onSearchProduct="handleOnSearchProduct" />
+      <ProductList :products="listedProducts.length > 0 ? listedProducts : products"/>
     </div>
   </div>
 </template>
@@ -21,45 +21,29 @@ export default {
   },
   data() {
     return {
-      products: [
-        {
-          name: "iPhone 12",
-          price: "50.000,00",
-          category: "Celulares",
-        },
-        {
-          name: "iPhone 11",
-          price: "39.998,00",
-          category: "Celulares",
-        },
-      ],
+      products: [],
+      listedProducts: [],
     };
   },
 
-  props: {
-    onAddProduct: Function,
-    listdata: Array,
-    onSearchProduct: Function,
-  },
 
   methods: {
     handleOnAddProduct(product) {
-      console.log(product);
       this.products = this.products.concat(product);
     },
 
     handleOnSearchProduct(text) {
-      const results = this.products.filter((p) => p.name === "text");
+      const results = this.products.filter((p) => p.name.startsWith(text));
       if (results.length > 0) {
         this.listedProducts = results;
       } else {
         this.listedProducts = this.products;
       }
-
-      console.log(this.listedProducts);
     },
-  },
-};
+
+  }
+
+}
 </script>
 
 <style>

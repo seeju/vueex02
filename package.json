@@ -21,6 +21,9 @@
     "vue-template-compiler": "^2.6.11"
   },
 
+  "rules": {
+    "no-unused-vars": "off"
+  },
 
   "eslintConfig": {
     "root": true,

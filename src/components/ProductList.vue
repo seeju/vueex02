@@ -1,16 +1,9 @@
 <template>
   <div>
-    <div>
-      <ProductItem :item="product" />
-      <ul>
-        <li v-for="product in listdata" :key="product.name">
-          {{ product.name }}<br />{{ product.price }}<br />{{
-            product.category
-          }}
-        </li>
-      </ul>
-        {{ totalProducts }}
+    <div v-for="(item, index) in products" :key="index">
+      <ProductItem :product="item" />
     </div>
+    <p>{{ totalProducts }}</p>
   </div>
 </template>
 
@@ -25,16 +18,15 @@ export default {
   },
 
   props: {
-    listdata: Array,
+    products: Array,
     item: Object,
   },
 
   computed: {
     totalProducts() {
-      const total = this.listdata.length;
+      const total = this.products.length;
       return total > 1 ? `Total: ${total} produtos` : `Total: ${total} produto`;
     },
   },
-
 };
 </script>

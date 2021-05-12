@@ -1,13 +1,13 @@
 <template>
-  <form v-on:submit.prevent="onHandleSearch">
-    <input type="text" v-model="search" /><button type="submit">Buscar</button>
-  </form>
+  <div>
+      <input type="text" v-model="search" placeholder="Buscar" v-on:keyup="handleSearch"/>
+  </div>
 </template>
 
 <script>
 export default {
   name: "SearchBar",
-
+  
   data() {
     return {
       search: "",
@@ -19,10 +19,9 @@ export default {
   },
 
   methods: {
-    onHandleSearch() {
-        this.onSearchProduct(this.search);
-    }
-    
-  }
+    handleSearch() {
+      this.onSearchProduct(this.search);
+    },
+  },
 };
 </script>
