@@ -1,11 +1,11 @@
 <template>
-  <div id="app">
-    <div>
+  <div>
+    <div class="form">
       <ProductForm :onAddProduct="handleOnAddProduct" />
+    </div>
       <SearchBar :onSearchProduct="handleOnSearchProduct" />
       <ProductList :products="listedProducts.length > 0 ? listedProducts : products"/>
     </div>
-  </div>
 </template>
 
 <script>
@@ -26,7 +26,6 @@ export default {
     };
   },
 
-
   methods: {
     handleOnAddProduct(product) {
       this.products = this.products.concat(product);
@@ -40,19 +39,10 @@ export default {
         this.listedProducts = this.products;
       }
     },
-
-  }
-
-}
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

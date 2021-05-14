@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="list">
     <div v-for="(item, index) in products" :key="index">
       <ProductItem :product="item" />
     </div>
@@ -30,3 +30,13 @@ export default {
   },
 };
 </script>
+
+<style>
+#list {
+  position: absolute;
+  top: 10px;
+  right: 80px;
+  width: 200px;
+  height: 100px;
+}
+</style>
